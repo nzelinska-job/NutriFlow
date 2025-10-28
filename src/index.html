@@ -1,0 +1,2376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriFlow - Holistic Health & Nutrition Intelligence for Women</title>
+    
+    <!-- Configuration -->
+    <script src="../config/config.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F5F0FF 0%, #E9D5FF 100%);
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #4A5568;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #8B5CF6;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 5rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: #1a1a2e;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-content .gradient-text {
+            background: linear-gradient(135deg, #8B5CF6 0%, #C084FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-content p {
+            font-size: 1.25rem;
+            color: #4A5568;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .primary-btn {
+            background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+            display: inline-block;
+        }
+        
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(139, 92, 246, 0.5);
+            cursor: pointer;
+        }
+        
+        .trust-badges {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6B7280;
+            font-size: 0.95rem;
+        }
+        
+        .badge-icon {
+            width: 20px;
+            height: 20px;
+            background: #8B5CF6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+        }
+        
+        /* Hero Visual - Health Overview */
+        .hero-visual {
+            position: relative;
+            height: 600px;
+        }
+        
+        .mockup-container {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .health-overview {
+            background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        
+        .overview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .overview-title {
+            color: #1a1a2e;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .cycle-indicator {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #8B5CF6;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.15);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 15px;
+            border-left: 4px solid #8B5CF6;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #8B5CF6;
+            margin-bottom: 0.3rem;
+        }
+        
+        .stat-trend {
+            font-size: 0.75rem;
+            color: #10B981;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 5rem 5%;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.15rem;
+            color: #6B7280;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #FAFAFA 0%, #F5F0FF 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+            border: 1px solid #E9D5FF;
+            cursor: pointer;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.15);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .feature-card p {
+            color: #6B7280;
+            line-height: 1.7;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 30px;
+            width: 90%;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 80px rgba(139, 92, 246, 0.3);
+            animation: slideUp 0.3s;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+            padding: 2rem 2.5rem;
+            border-radius: 30px 30px 0 0;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .close {
+            color: white;
+            font-size: 2rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .close:hover {
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 2.5rem;
+        }
+        
+        /* Meal Planning Modal */
+        .schedule-timeline {
+            background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-header {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 1.5rem;
+        }
+        
+        .timeline-items {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .timeline-item {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.1);
+        }
+        
+        .timeline-time {
+            font-weight: 700;
+            color: #8B5CF6;
+            font-size: 1rem;
+        }
+        
+        .timeline-item-text {
+            font-size: 0.9rem;
+            color: #4A5568;
+        }
+        
+        .warning-box {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+        
+        .warning-box strong {
+            color: #92400E;
+        }
+        
+        .info-box {
+            background: #DBEAFE;
+            border-left: 4px solid #3B82F6;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+        
+        .info-box strong {
+            color: #1E40AF;
+        }
+        
+        .meals-section {
+            margin-top: 2rem;
+        }
+        
+        .meal-time-group {
+            margin-bottom: 3rem;
+        }
+        
+        .meal-time-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .meal-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .meal-option-card {
+            background: linear-gradient(135deg, #FAFAFA 0%, #F5F0FF 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid #E9D5FF;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .meal-option-card:hover {
+            border-color: #8B5CF6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15);
+        }
+        
+        .meal-option-card.forbidden {
+            background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
+            border-color: #EF4444;
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .meal-option-card.forbidden:hover {
+            transform: none;
+        }
+        
+        .forbidden-badge {
+            background: #EF4444;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+        
+        .meal-image-placeholder {
+            height: 150px;
+            background: linear-gradient(135deg, #E9D5FF 0%, #DDD6FE 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .meal-option-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .meal-option-details {
+            font-size: 0.85rem;
+            color: #6B7280;
+            margin-bottom: 0.8rem;
+        }
+        
+        .meal-macros {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+        }
+        
+        .macro-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        
+        .macro-label {
+            color: #9CA3AF;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+        }
+        
+        .macro-value {
+            color: #8B5CF6;
+            font-weight: 600;
+        }
+        
+        /* Food Photo Section */
+        .photo-logging-section {
+            background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+        
+        .photo-section-header {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .photo-upload-area {
+            background: white;
+            border: 3px dashed #10B981;
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .photo-upload-area:hover {
+            background: #F0FDF4;
+            border-color: #059669;
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .upload-text {
+            font-size: 1.1rem;
+            color: #4A5568;
+            margin-bottom: 0.5rem;
+        }
+        
+        .upload-subtext {
+            font-size: 0.9rem;
+            color: #9CA3AF;
+        }
+        
+        .recognized-food {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 1.5rem;
+            border: 2px solid #10B981;
+        }
+        
+        .recognized-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+        
+        .food-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .food-item-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            padding: 1rem;
+            background: #F9FAFB;
+            border-radius: 10px;
+        }
+        
+        .food-item-name {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        
+        .food-item-input {
+            padding: 0.5rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .food-item-calories {
+            color: #8B5CF6;
+            font-weight: 600;
+        }
+        
+        .confirm-log-btn {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .confirm-log-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+        }
+        
+        /* Insights Modal - Graphs */
+        .insights-intro {
+            background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .insights-intro h3 {
+            font-size: 1.5rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+        
+        .insights-intro p {
+            color: #6B7280;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        .graph-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #E9D5FF;
+        }
+        
+        .graph-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .graph-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        
+        .graph-legend {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .legend-line {
+            width: 30px;
+            height: 3px;
+            border-radius: 2px;
+        }
+        
+        /* Graph visualization */
+        .graph-viz {
+            height: 300px;
+            position: relative;
+            background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+        
+        .graph-axes {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            top: 2rem;
+            border-left: 2px solid #D1D5DB;
+            border-bottom: 2px solid #D1D5DB;
+        }
+        
+        .graph-line-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .axis-label {
+            position: absolute;
+            font-size: 0.75rem;
+            color: #6B7280;
+            font-weight: 500;
+        }
+        
+        .y-axis-label {
+            left: -2.5rem;
+            top: -1.5rem;
+            transform: rotate(-90deg);
+            transform-origin: left top;
+        }
+        
+        .x-axis-label {
+            bottom: -1.5rem;
+            right: 0;
+        }
+        
+        /* Correlation cards */
+        .correlation-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .correlation-card {
+            background: linear-gradient(135deg, #FAFAFA 0%, #F5F0FF 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #8B5CF6;
+        }
+        
+        .correlation-card.negative {
+            border-left-color: #EF4444;
+            background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
+        }
+        
+        .correlation-card.positive {
+            border-left-color: #10B981;
+            background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+        }
+        
+        .correlation-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .correlation-text {
+            font-size: 0.9rem;
+            color: #6B7280;
+            line-height: 1.6;
+        }
+        
+        .correlation-stat {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 0.8rem;
+        }
+        
+        .correlation-card.negative .correlation-stat {
+            color: #EF4444;
+        }
+        
+        .correlation-card.positive .correlation-stat {
+            color: #10B981;
+        }
+        
+        /* Calendar Modal */
+        .calendar-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .calendar-month {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+        
+        .calendar-legend {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.8rem;
+        }
+        
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            color: #6B7280;
+            font-size: 0.9rem;
+            padding: 0.5rem;
+        }
+        
+        .calendar-day {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .calendar-day:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        .day-number {
+            font-size: 1.1rem;
+        }
+        
+        .day-activity {
+            font-size: 0.7rem;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        
+        /* Cycle Phase Colors */
+        .menstrual { background: #E9D5FF; color: #7C3AED; }
+        .follicular { background: #FEF3C7; color: #D97706; }
+        .ovulation { background: #DBEAFE; color: #2563EB; }
+        .luteal { background: #FED7D7; color: #DC2626; }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+            padding: 5rem 5%;
+            text-align: center;
+            color: white;
+        }
+        
+        /* Collapsed Meal Plan Button */
+        .collapsed-meal-plan-btn {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        
+        .collapsed-meal-plan-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+        }
+        
+        .collapsed-meal-plan-btn.show {
+            display: block;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+        
+        .cta-section .primary-btn {
+            background: white;
+            color: #8B5CF6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .meal-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .calendar-grid {
+                gap: 0.5rem;
+            }
+            
+            .correlation-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">🌊 NutriFlow</div>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#science">The Science</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+        </ul>
+        <a href="#" class="cta-button">Start Free Trial</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                Nutrition That Flows With 
+                <span class="gradient-text">Your Body</span>
+            </h1>
+            <p>
+                Stop fighting your hormones. NutriFlow uses AI to sync your nutrition, energy, and wellness with your menstrual cycle—because every woman's body is unique.
+            </p>
+            <div class="hero-buttons">
+                <a href="#" class="primary-btn" onclick="openCalendarModal(); return false;">📅 Plan Your Month</a>
+            </div>
+            <div class="trust-badges">
+                <div class="badge">
+                    <div class="badge-icon">✓</div>
+                    <span>GDPR Compliant</span>
+                </div>
+                <div class="badge">
+                    <div class="badge-icon">✓</div>
+                    <span>Evidence-Based</span>
+                </div>
+                <div class="badge">
+                    <div class="badge-icon">✓</div>
+                    <span>Privacy First</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="mockup-container">
+                <div class="health-overview">
+                    <div class="overview-header">
+                        <div class="overview-title">Health Overview</div>
+                        <div class="cycle-indicator">Day 14 • Ovulation</div>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">Daily Calories</div>
+                            <div class="stat-value">1,850</div>
+                            <div class="stat-trend">↑ Adjusted for cycle</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Macro Balance</div>
+                            <div class="stat-value">Optimal</div>
+                            <div class="stat-trend">40/30/30 ratio</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Sleep Quality</div>
+                            <div class="stat-value">7.2 hrs</div>
+                            <div class="stat-trend">↑ Above target</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Hydration</div>
+                            <div class="stat-value">2.1 L</div>
+                            <div class="stat-trend">78% complete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <h2>Built for Your Body's Natural Rhythm</h2>
+            <p>NutriFlow adapts to your unique hormonal patterns, learning what works for YOU across every phase of your cycle.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card" onclick="openMealPlanModal()">
+                <div class="feature-icon">🍽️</div>
+                <h3>Personalized Meal Plans</h3>
+                <p>Get daily meal suggestions adapted to your cycle phase, energy levels, and nutritional needs. AI considers supplement timing and food interactions.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Personalized Goals</h3>
+                <p>Whether managing PCOS, losing weight, or optimizing athletic performance—NutriFlow adapts to your specific health journey.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💊</div>
+                <h3>Medication & Supplement Tracking</h3>
+                <p>Track how contraceptives, medications, and supplements affect your weight, mood, and energy. Get optimal timing recommendations.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🛒</div>
+                <h3>Smart Shopping Lists</h3>
+                <p>Your weekly meal plan automatically becomes an organized grocery list with budget optimization and healthy product recommendations.</p>
+            </div>
+            
+            <div class="feature-card" onclick="openInsightsModal()">
+                <div class="feature-icon">📊</div>
+                <h3>AI-Powered Health Insights</h3>
+                <p>Discover hidden patterns connecting sleep, stress, sugar intake, and weight. See exactly how your lifestyle affects your body with interactive visualizations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meal Plan Modal -->
+    <div id="mealPlanModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🍽️ Today's Personalized Meal Plan</h2>
+                <span class="close" onclick="closeMealPlanModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- Schedule Timeline -->
+                <div class="schedule-timeline">
+                    <div class="timeline-header">Today's Schedule</div>
+                    <div class="timeline-items">
+                        <div class="timeline-item">
+                            <div class="timeline-time">07:00</div>
+                            <div class="timeline-item-text">💊 Iron + Vitamin C</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">08:00</div>
+                            <div class="timeline-item-text">🥗 Breakfast (calcium-free)</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">13:00</div>
+                            <div class="timeline-item-text">🍲 Lunch (calcium OK)</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">16:00</div>
+                            <div class="timeline-item-text">🍎 Snack</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">19:30</div>
+                            <div class="timeline-item-text">🌙 Dinner + Magnesium</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <strong>💡 Iron Supplement Optimization:</strong> Take your iron supplement with vitamin C (orange juice, citrus) to enhance absorption by up to 30%!
+                    </div>
+                    
+                    <div class="warning-box">
+                        <strong>⚠️ Calcium Restriction (07:00-11:00):</strong> Avoid calcium-rich foods (dairy, fortified milk alternatives, calcium supplements) for <strong>3-4 hours</strong> after iron to prevent competitive absorption interference. Breakfast at 08:00 should be calcium-free; calcium-rich foods are safe from lunch onwards.
+                    </div>
+                </div>
+
+                <!-- Breakfast -->
+                <div class="meals-section">
+                    <div class="meal-time-group">
+                        <div class="meal-time-title">🌅 Breakfast (8:00 AM)</div>
+                        <div class="meal-options">
+                            <div class="meal-option-card">
+                                <div class="meal-image-placeholder">🥑</div>
+                                <div class="meal-option-name">Avocado Toast with Eggs</div>
+                                <div class="meal-option-details">Whole grain bread, 2 eggs, avocado, cherry tomatoes</div>
+                                <div class="meal-macros">
+                                    <div class="macro-item">
+                                        <span class="macro-label">Calories</span>
+                                        <span class="macro-value">450</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Protein</span>
+                                        <span class="macro-value">22g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Carbs</span>
+                                        <span class="macro-value">38g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Fat</span>
+                                        <span class="macro-value">24g</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="meal-option-card forbidden">
+                                <div class="forbidden-badge">🚫 FORBIDDEN (Calcium)</div>
+                                <div class="meal-image-placeholder">🥛</div>
+                                <div class="meal-option-name">Greek Yogurt Parfait</div>
+                                <div class="meal-option-details">Greek yogurt, granola, berries, honey</div>
+                                <div class="meal-option-details" style="color: #DC2626; font-weight: 600; margin-top: 0.5rem;">
+                                    High calcium content - blocks iron absorption
+                                </div>
+                            </div>
+
+                            <div class="meal-option-card">
+                                <div class="meal-image-placeholder">🥗</div>
+                                <div class="meal-option-name">Veggie Scramble Bowl</div>
+                                <div class="meal-option-details">3 eggs, spinach, bell peppers, mushrooms, olive oil</div>
+                                <div class="meal-macros">
+                                    <div class="macro-item">
+                                        <span class="macro-label">Calories</span>
+                                        <span class="macro-value">380</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Protein</span>
+                                        <span class="macro-value">26g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Carbs</span>
+                                        <span class="macro-value">12g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Fat</span>
+                                        <span class="macro-value">28g</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="meal-option-card forbidden">
+                                <div class="forbidden-badge">🚫 FORBIDDEN (Calcium)</div>
+                                <div class="meal-image-placeholder">☕</div>
+                                <div class="meal-option-name">Cappuccino & Croissant</div>
+                                <div class="meal-option-details">Cappuccino with milk foam, butter croissant</div>
+                                <div class="meal-option-details" style="color: #DC2626; font-weight: 600; margin-top: 0.5rem;">
+                                    Dairy milk - interferes with iron
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="meal-time-group">
+                        <div class="meal-time-title">🍲 Lunch (1:00 PM)</div>
+                        <div class="meal-options">
+                            <div class="meal-option-card">
+                                <div class="meal-image-placeholder">🥙</div>
+                                <div class="meal-option-name">Quinoa Power Bowl</div>
+                                <div class="meal-option-details">Quinoa, grilled chicken, roasted veggies, tahini</div>
+                                <div class="meal-macros">
+                                    <div class="macro-item">
+                                        <span class="macro-label">Calories</span>
+                                        <span class="macro-value">520</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Protein</span>
+                                        <span class="macro-value">35g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Carbs</span>
+                                        <span class="macro-value">48g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Fat</span>
+                                        <span class="macro-value">22g</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="meal-option-card">
+                                <div class="meal-image-placeholder">🍝</div>
+                                <div class="meal-option-name">Salmon Pasta</div>
+                                <div class="meal-option-details">Whole wheat pasta, grilled salmon, asparagus</div>
+                                <div class="meal-macros">
+                                    <div class="macro-item">
+                                        <span class="macro-label">Calories</span>
+                                        <span class="macro-value">580</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Protein</span>
+                                        <span class="macro-value">38g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Carbs</span>
+                                        <span class="macro-value">52g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Fat</span>
+                                        <span class="macro-value">24g</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snack -->
+                    <div class="meal-time-group">
+                        <div class="meal-time-title">🍎 Snack (4:00 PM)</div>
+                        <div class="meal-options">
+                            <div class="meal-option-card">
+                                <div class="meal-image-placeholder">🥜</div>
+                                <div class="meal-option-name">Mixed Nuts & Fruit</div>
+                                <div class="meal-option-details">Almonds, walnuts, apple slices, orange</div>
+                                <div class="meal-macros">
+                                    <div class="macro-item">
+                                        <span class="macro-label">Calories</span>
+                                        <span class="macro-value">280</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Protein</span>
+                                        <span class="macro-value">8g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Carbs</span>
+                                        <span class="macro-value">22g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Fat</span>
+                                        <span class="macro-value">18g</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="meal-option-card">
+                                <div class="meal-image-placeholder">🥤</div>
+                                <div class="meal-option-name">Protein Smoothie</div>
+                                <div class="meal-option-details">Plant protein, banana, spinach, almond butter</div>
+                                <div class="meal-macros">
+                                    <div class="macro-item">
+                                        <span class="macro-label">Calories</span>
+                                        <span class="macro-value">320</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Protein</span>
+                                        <span class="macro-value">25g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Carbs</span>
+                                        <span class="macro-value">32g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Fat</span>
+                                        <span class="macro-value">12g</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="meal-time-group">
+                        <div class="meal-time-title">🌙 Dinner (7:30 PM)</div>
+                        <div class="meal-options">
+                            <div class="meal-option-card">
+                                <div class="meal-image-placeholder">🍗</div>
+                                <div class="meal-option-name">Herb Chicken & Veggies</div>
+                                <div class="meal-option-details">Grilled chicken breast, sweet potato, broccoli</div>
+                                <div class="meal-macros">
+                                    <div class="macro-item">
+                                        <span class="macro-label">Calories</span>
+                                        <span class="macro-value">480</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Protein</span>
+                                        <span class="macro-value">42g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Carbs</span>
+                                        <span class="macro-value">38g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Fat</span>
+                                        <span class="macro-value">18g</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="meal-option-card">
+                                <div class="meal-image-placeholder">🥘</div>
+                                <div class="meal-option-name">Lentil Curry Bowl</div>
+                                <div class="meal-option-details">Red lentils, coconut curry, brown rice, spinach</div>
+                                <div class="meal-macros">
+                                    <div class="macro-item">
+                                        <span class="macro-label">Calories</span>
+                                        <span class="macro-value">450</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Protein</span>
+                                        <span class="macro-value">18g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Carbs</span>
+                                        <span class="macro-value">62g</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">Fat</span>
+                                        <span class="macro-value">14g</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Photo Logging Section -->
+                <div class="photo-logging-section">
+                    <div class="photo-section-header">📸 AI-Powered Food Recognition</div>
+                    
+                    <div style="background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; font-size: 0.9rem; color: #166534; line-height: 1.7; border: 2px solid #86EFAC;">
+                        <strong>Setup Real AI Recognition:</strong><br><br>
+                        
+                        1️⃣ Get <strong>Write</strong> token: <a href="https://huggingface.co/settings/tokens" target="_blank" style="color: #059669; font-weight: 600; text-decoration: underline;">huggingface.co/settings/tokens</a><br>
+                        2️⃣ In code (line ~1894), replace: <code style="background: white; padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.85rem;">HF_API_KEY = 'hf_demo'</code><br>
+                        3️⃣ Save, hard refresh (Ctrl+F5), and upload food photo!<br><br>
+                        
+                        <strong>Model:</strong> <code style="background: white; padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.85rem;">nateraw/food</code> (Food-101, 101 categories, ~85% accuracy)<br>
+                        <strong>API:</strong> <code style="background: white; padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.85rem;">router.huggingface.co/hf-inference</code> (New Inference Providers API ✨)<br>
+                        <strong>Fallback:</strong> Smart demo mode if API unavailable
+                    </div>
+                    
+                    <div class="photo-upload-area" onclick="document.getElementById('fileInput').click()">
+                        <div class="upload-icon">📷</div>
+                        <div class="upload-text">Take a photo of your meal</div>
+                        <div class="upload-subtext">AI will recognize the food and calculate nutrition</div>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="recognizeFood()">
+                    </div>
+
+                    <div id="recognizedFood" class="recognized-food" style="display: none;">
+                        <div class="recognized-title">✓ AI Recognized:</div>
+                        <div class="food-items-list">
+                            <div class="food-item-row">
+                                <div class="food-item-name">🥑 Avocado</div>
+                                <input type="text" class="food-item-input" value="100g" placeholder="Weight">
+                                <div class="food-item-calories">160 cal</div>
+                                <button style="background: #EF4444; color: white; border: none; padding: 0.5rem; border-radius: 8px; cursor: pointer;">✕</button>
+                            </div>
+                            <div class="food-item-row">
+                                <div class="food-item-name">🍞 Whole Grain Toast</div>
+                                <input type="text" class="food-item-input" value="2 slices" placeholder="Quantity">
+                                <div class="food-item-calories">140 cal</div>
+                                <button style="background: #EF4444; color: white; border: none; padding: 0.5rem; border-radius: 8px; cursor: pointer;">✕</button>
+                            </div>
+                            <div class="food-item-row">
+                                <div class="food-item-name">🥚 Eggs</div>
+                                <input type="text" class="food-item-input" value="2 eggs" placeholder="Quantity">
+                                <div class="food-item-calories">150 cal</div>
+                                <button style="background: #EF4444; color: white; border: none; padding: 0.5rem; border-radius: 8px; cursor: pointer;">✕</button>
+                            </div>
+                        </div>
+                        <button class="confirm-log-btn" onclick="confirmLog()">✓ Confirm & Log (450 cal)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Insights Modal with Graphs -->
+    <div id="insightsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📊 AI-Powered Health Insights</h2>
+                <span class="close" onclick="closeInsightsModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="insights-intro">
+                    <h3>Discover Your Unique Patterns</h3>
+                    <p>Our AI analyzed 90 days of your health data and discovered powerful correlations between your lifestyle choices and body responses. Understanding these patterns empowers you to make informed decisions.</p>
+                </div>
+
+                <!-- Graph 1: Sleep & Sugar Consumption -->
+                <div class="graph-container">
+                    <div class="graph-header">
+                        <div class="graph-title">Sleep Deprivation → Increased Sugar Cravings</div>
+                        <div class="graph-legend">
+                            <div class="legend-item">
+                                <div class="legend-line" style="background: #8B5CF6;"></div>
+                                <span>Sleep (hours)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-line" style="background: #F59E0B;"></div>
+                                <span>Sugar Intake (g)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="graph-viz">
+                        <div class="graph-axes">
+                            <svg class="graph-line-svg" viewBox="0 0 1000 250" preserveAspectRatio="none">
+                                <!-- Sleep line (purple) - high values -->
+                                <polyline
+                                    fill="none"
+                                    stroke="#8B5CF6"
+                                    stroke-width="3"
+                                    points="0,100 100,90 200,50 300,40 400,180 500,200 600,190 700,55 800,45 900,40 1000,35"
+                                />
+                                <!-- Sugar line (orange) - inverse to sleep -->
+                                <polyline
+                                    fill="none"
+                                    stroke="#F59E0B"
+                                    stroke-width="3"
+                                    points="0,150 100,160 200,200 300,210 400,70 500,50 600,60 700,195 800,205 900,210 1000,215"
+                                />
+                                
+                                <!-- Data point labels -->
+                                <!-- Sleep labels (purple) - HIGH values -->
+                                <text x="200" y="45" font-size="12" fill="#8B5CF6" font-weight="600">8h</text>
+                                <text x="300" y="35" font-size="12" fill="#8B5CF6" font-weight="600">8.5h</text>
+                                <text x="400" y="175" font-size="12" fill="#8B5CF6" font-weight="600">5h</text>
+                                <text x="500" y="195" font-size="12" fill="#8B5CF6" font-weight="600">4.5h</text>
+                                <text x="700" y="50" font-size="12" fill="#8B5CF6" font-weight="600">7.8h</text>
+                                <text x="800" y="40" font-size="12" fill="#8B5CF6" font-weight="600">8.2h</text>
+                                <text x="1000" y="30" font-size="12" fill="#8B5CF6" font-weight="600">8.5h</text>
+                                
+                                <!-- Sugar labels (orange) - INVERSE: low when sleep is high -->
+                                <text x="200" y="220" font-size="12" fill="#F59E0B" font-weight="600">35g</text>
+                                <text x="300" y="230" font-size="12" fill="#F59E0B" font-weight="600">28g</text>
+                                <text x="400" y="65" font-size="12" fill="#F59E0B" font-weight="600">82g</text>
+                                <text x="500" y="45" font-size="12" fill="#F59E0B" font-weight="600">95g</text>
+                                <text x="700" y="215" font-size="12" fill="#F59E0B" font-weight="600">32g</text>
+                                <text x="800" y="225" font-size="12" fill="#F59E0B" font-weight="600">25g</text>
+                                <text x="1000" y="235" font-size="12" fill="#F59E0B" font-weight="600">22g</text>
+                            </svg>
+                            <div class="axis-label y-axis-label">Values</div>
+                            <div class="axis-label x-axis-label">Days (Last 30)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="correlation-cards">
+                        <div class="correlation-card negative">
+                            <div class="correlation-title">❌ Poor Sleep Pattern</div>
+                            <div class="correlation-text">
+                                When you sleep <strong>&lt;6 hours</strong> (4.5-5h), your sugar intake spikes to <strong>82-95g per day</strong>. Your body craves quick energy from simple carbs to compensate for exhaustion.
+                            </div>
+                            <div class="correlation-stat">-78% correlation</div>
+                        </div>
+                        
+                        <div class="correlation-card positive">
+                            <div class="correlation-title">✅ Optimal Sleep Pattern</div>
+                            <div class="correlation-text">
+                                With <strong>7.8-8.5 hours</strong> of quality sleep, you naturally consume only <strong>22-35g sugar</strong> daily and make healthier food choices throughout the day.
+                            </div>
+                            <div class="correlation-stat">+62% better control</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graph 2: Stress, Carbs & Weight -->
+                <div class="graph-container">
+                    <div class="graph-header">
+                        <div class="graph-title">High Stress + Carb Overconsumption → Weight Gain</div>
+                        <div class="graph-legend">
+                            <div class="legend-item">
+                                <div class="legend-line" style="background: #EF4444;"></div>
+                                <span>Stress Level (1-10)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-line" style="background: #F59E0B;"></div>
+                                <span>Carbs (g)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-line" style="background: #8B5CF6;"></div>
+                                <span>Weight Change (kg)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="graph-viz">
+                        <div class="graph-axes">
+                            <svg class="graph-line-svg" viewBox="0 0 1000 250" preserveAspectRatio="none">
+                                <!-- Stress line (red) - high stress periods -->
+                                <polyline
+                                    fill="none"
+                                    stroke="#EF4444"
+                                    stroke-width="3"
+                                    points="0,120 100,180 200,195 300,190 400,50 500,60 600,55 700,185 800,195 900,185 1000,65"
+                                />
+                                <!-- Carbs line (orange) - follows stress -->
+                                <polyline
+                                    fill="none"
+                                    stroke="#F59E0B"
+                                    stroke-width="3"
+                                    points="0,130 100,170 200,185 300,180 400,70 500,75 600,70 700,175 800,185 900,175 1000,85"
+                                />
+                                <!-- Weight line (purple) - increases with stress/carbs -->
+                                <polyline
+                                    fill="none"
+                                    stroke="#8B5CF6"
+                                    stroke-width="3"
+                                    points="0,180 100,165 200,150 300,145 400,190 500,185 600,190 700,155 800,145 900,150 1000,185"
+                                />
+                                
+                                <!-- Data point labels -->
+                                <!-- Stress labels (red) -->
+                                <text x="100" y="175" font-size="12" fill="#EF4444" font-weight="600">8/10</text>
+                                <text x="200" y="215" font-size="12" fill="#EF4444" font-weight="600">9/10</text>
+                                <text x="400" y="45" font-size="12" fill="#EF4444" font-weight="600">3/10</text>
+                                <text x="700" y="180" font-size="12" fill="#EF4444" font-weight="600">8/10</text>
+                                <text x="1000" y="60" font-size="12" fill="#EF4444" font-weight="600">4/10</text>
+                                
+                                <!-- Carbs labels (orange) - high when stress high -->
+                                <text x="100" y="190" font-size="12" fill="#F59E0B" font-weight="600">285g</text>
+                                <text x="200" y="205" font-size="12" fill="#F59E0B" font-weight="600">305g</text>
+                                <text x="400" y="65" font-size="12" fill="#F59E0B" font-weight="600">158g</text>
+                                <text x="700" y="195" font-size="12" fill="#F59E0B" font-weight="600">295g</text>
+                                <text x="1000" y="80" font-size="12" fill="#F59E0B" font-weight="600">168g</text>
+                                
+                                <!-- Weight labels (purple) - high when stress/carbs high -->
+                                <text x="10" y="200" font-size="12" fill="#8B5CF6" font-weight="600">68.2kg</text>
+                                <text x="200" y="145" font-size="12" fill="#8B5CF6" font-weight="600">68.9kg</text>
+                                <text x="400" y="210" font-size="12" fill="#8B5CF6" font-weight="600">67.8kg</text>
+                                <text x="700" y="150" font-size="12" fill="#8B5CF6" font-weight="600">68.8kg</text>
+                                <text x="1000" y="205" font-size="12" fill="#8B5CF6" font-weight="600">67.9kg</text>
+                            </svg>
+                            <div class="axis-label y-axis-label">Values</div>
+                            <div class="axis-label x-axis-label">Days (Last 30)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="correlation-cards">
+                        <div class="correlation-card negative">
+                            <div class="correlation-title">❌ High Stress Days</div>
+                            <div class="correlation-text">
+                                Stress level <strong>8-9/10</strong> triggers comfort eating: <strong>285-305g carbs</strong> (vs. target 180g). Result: <strong>weight climbs to 68.8-68.9kg</strong> during these periods.
+                            </div>
+                            <div class="correlation-stat">+1.1kg gained</div>
+                        </div>
+                        
+                        <div class="correlation-card positive">
+                            <div class="correlation-title">✅ Low Stress Days</div>
+                            <div class="correlation-text">
+                                Stress level <strong>3-4/10</strong> with <strong>controlled carbs (158-168g)</strong> correlates with <strong>weight dropping to 67.8-67.9kg</strong>. Calm mind = better food choices!
+                            </div>
+                            <div class="correlation-stat">-1.0kg lost</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graph 3: Good Sleep + Lower Carbs = Weight Loss -->
+                <div class="graph-container">
+                    <div class="graph-header">
+                        <div class="graph-title">Quality Sleep + Balanced Carbs → Weight Loss Success</div>
+                        <div class="graph-legend">
+                            <div class="legend-item">
+                                <div class="legend-line" style="background: #10B981;"></div>
+                                <span>Good Sleep Days (7+ hrs)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-line" style="background: #3B82F6;"></div>
+                                <span>Balanced Carbs (150-200g)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-line" style="background: #8B5CF6;"></div>
+                                <span>Weight Trend (kg)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="graph-viz">
+                        <div class="graph-axes">
+                            <svg class="graph-line-svg" viewBox="0 0 1000 250" preserveAspectRatio="none">
+                                <!-- Good sleep zones (green background) -->
+                                <rect x="0" y="0" width="180" height="250" fill="#10B981" opacity="0.12"/>
+                                <rect x="280" y="0" width="150" height="250" fill="#10B981" opacity="0.12"/>
+                                <rect x="600" y="0" width="250" height="250" fill="#10B981" opacity="0.12"/>
+                                
+                                <!-- Poor sleep zones (red background) -->
+                                <rect x="180" y="0" width="100" height="250" fill="#EF4444" opacity="0.12"/>
+                                <rect x="430" y="0" width="170" height="250" fill="#EF4444" opacity="0.12"/>
+                                <rect x="850" y="0" width="150" height="250" fill="#EF4444" opacity="0.12"/>
+                                
+                                <!-- Weight trend line (purple) - fluctuating based on sleep -->
+                                <polyline
+                                    fill="none"
+                                    stroke="#8B5CF6"
+                                    stroke-width="4"
+                                    points="0,80 100,95 180,110 230,125 280,135 350,120 430,115 500,140 600,155 700,130 800,110 850,100 920,120 1000,135"
+                                />
+                                
+                                <!-- Data point circles -->
+                                <circle cx="100" cy="95" r="4" fill="#8B5CF6"/>
+                                <circle cx="180" cy="110" r="4" fill="#8B5CF6"/>
+                                <circle cx="230" cy="125" r="4" fill="#EF4444"/>
+                                <circle cx="350" cy="120" r="4" fill="#10B981"/>
+                                <circle cx="500" cy="140" r="4" fill="#EF4444"/>
+                                <circle cx="700" cy="130" r="4" fill="#10B981"/>
+                                <circle cx="850" cy="100" r="4" fill="#10B981"/>
+                                <circle cx="920" cy="120" r="4" fill="#EF4444"/>
+                                
+                                <!-- Data point labels with weight values -->
+                                <text x="20" y="75" font-size="13" fill="#8B5CF6" font-weight="700">70.2kg</text>
+                                <text x="105" y="90" font-size="13" fill="#10B981" font-weight="700">69.8kg</text>
+                                <text x="185" y="105" font-size="13" fill="#10B981" font-weight="700">69.5kg</text>
+                                <text x="235" y="145" font-size="13" fill="#EF4444" font-weight="700">69.8kg↑</text>
+                                <text x="355" y="115" font-size="13" fill="#10B981" font-weight="700">69.3kg</text>
+                                <text x="505" y="160" font-size="13" fill="#EF4444" font-weight="700">69.7kg↑</text>
+                                <text x="705" y="125" font-size="13" fill="#10B981" font-weight="700">69.0kg</text>
+                                <text x="855" y="95" font-size="13" fill="#10B981" font-weight="700">68.5kg</text>
+                                <text x="925" y="140" font-size="13" fill="#EF4444" font-weight="700">68.9kg↑</text>
+                                <text x="930" y="155" font-size="13" fill="#10B981" font-weight="700">68.2kg</text>
+                                
+                                <!-- Sleep quality indicators at bottom -->
+                                <text x="50" y="235" font-size="11" fill="#10B981" font-weight="600">7.5-8h</text>
+                                <text x="200" y="235" font-size="11" fill="#EF4444" font-weight="600">5-5.5h</text>
+                                <text x="320" y="235" font-size="11" fill="#10B981" font-weight="600">7-8h</text>
+                                <text x="490" y="235" font-size="11" fill="#EF4444" font-weight="600">4.5-6h</text>
+                                <text x="680" y="235" font-size="11" fill="#10B981" font-weight="600">7.5-8.5h</text>
+                                <text x="900" y="235" font-size="11" fill="#EF4444" font-weight="600">5.5-6h</text>
+                            </svg>
+                            <div class="axis-label y-axis-label">Weight (kg)</div>
+                            <div class="axis-label x-axis-label">Days (Last 30)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="correlation-cards">
+                        <div class="correlation-card positive">
+                            <div class="correlation-title">🎉 Good Sleep = Weight Loss</div>
+                            <div class="correlation-text">
+                                Green zones show <strong>7.5-8.5h sleep</strong>: weight consistently drops from <strong>70.2kg → 69.5kg → 69.0kg → 68.5kg</strong>. Total loss in good sleep periods: <strong>-1.7kg</strong>
+                            </div>
+                            <div class="correlation-stat">-1.7kg in good sleep periods</div>
+                        </div>
+                        
+                        <div class="correlation-card negative">
+                            <div class="correlation-title">❌ Poor Sleep = Weight Gain</div>
+                            <div class="correlation-text">
+                                Red zones show <strong>4.5-6h sleep</strong>: weight rebounds <strong>↑0.3-0.4kg</strong> immediately. Days 8-10, 15-20, 27-29 show clear spikes after poor sleep nights.
+                            </div>
+                            <div class="correlation-stat">+0.3-0.4kg per poor sleep period</div>
+                        </div>
+                    </div>
+                    
+                    <div class="correlation-cards">
+                        <div class="correlation-card" style="border-left-color: #8B5CF6;">
+                            <div class="correlation-title">💡 Net Result</div>
+                            <div class="correlation-text">
+                                Despite setbacks from poor sleep days, consistent good sleep periods resulted in <strong>net -2.0kg loss</strong> over 30 days (70.2kg → 68.2kg). Pattern is clear: prioritize sleep = sustainable weight loss!
+                            </div>
+                            <div class="correlation-stat" style="color: #8B5CF6;">-2.0kg total</div>
+                        </div>
+                        
+                        <div class="correlation-card" style="border-left-color: #10B981; background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);">
+                            <div class="correlation-title">✨ Key Insight</div>
+                            <div class="correlation-text">
+                                You're <strong>5x more likely</strong> to lose weight on days following 7+ hours of sleep. Good sleep reduces cravings, improves metabolism, and enhances willpower for healthy choices!
+                            </div>
+                            <div class="correlation-stat" style="color: #10B981;">5x success rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar Modal -->
+    <div id="calendarModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📅 Your Monthly Activity Plan</h2>
+                <span class="close" onclick="closeCalendarModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <div class="calendar-month">October 2025</div>
+                        <div style="color: #6B7280; font-size: 0.9rem;">Optimize your activities based on your cycle</div>
+                    </div>
+
+                    <div class="calendar-legend">
+                        <div class="legend-item">
+                            <div class="legend-color menstrual"></div>
+                            <span><strong>Menstrual Phase:</strong> Rest, yoga, light walking</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color follicular"></div>
+                            <span><strong>Follicular Phase:</strong> New challenges, cardio, social activities</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color ovulation"></div>
+                            <span><strong>Ovulation Phase:</strong> HIIT, strength training, peak performance</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color luteal"></div>
+                            <span><strong>Luteal Phase:</strong> Moderate exercise, stretching, reflection</span>
+                        </div>
+                    </div>
+
+                    <div class="calendar-grid">
+                        <div class="calendar-day-header">Mon</div>
+                        <div class="calendar-day-header">Tue</div>
+                        <div class="calendar-day-header">Wed</div>
+                        <div class="calendar-day-header">Thu</div>
+                        <div class="calendar-day-header">Fri</div>
+                        <div class="calendar-day-header">Sat</div>
+                        <div class="calendar-day-header">Sun</div>
+
+                        <!-- Week 1 -->
+                        <div class="calendar-day" style="background: #F3F4F6;"></div>
+                        <div class="calendar-day" style="background: #F3F4F6;"></div>
+                        <div class="calendar-day menstrual">
+                            <div class="day-number">1</div>
+                            <div class="day-activity">Rest Day</div>
+                        </div>
+                        <div class="calendar-day menstrual">
+                            <div class="day-number">2</div>
+                            <div class="day-activity">Yoga</div>
+                        </div>
+                        <div class="calendar-day menstrual">
+                            <div class="day-number">3</div>
+                            <div class="day-activity">Walk</div>
+                        </div>
+                        <div class="calendar-day menstrual">
+                            <div class="day-number">4</div>
+                            <div class="day-activity">Stretch</div>
+                        </div>
+                        <div class="calendar-day follicular">
+                            <div class="day-number">5</div>
+                            <div class="day-activity">Light Run</div>
+                        </div>
+
+                        <!-- Week 2 -->
+                        <div class="calendar-day follicular">
+                            <div class="day-number">6</div>
+                            <div class="day-activity">Cardio</div>
+                        </div>
+                        <div class="calendar-day follicular">
+                            <div class="day-number">7</div>
+                            <div class="day-activity">Strength</div>
+                        </div>
+                        <div class="calendar-day follicular">
+                            <div class="day-number">8</div>
+                            <div class="day-activity">HIIT</div>
+                        </div>
+                        <div class="calendar-day follicular">
+                            <div class="day-number">9</div>
+                            <div class="day-activity">Cycling</div>
+                        </div>
+                        <div class="calendar-day follicular">
+                            <div class="day-number">10</div>
+                            <div class="day-activity">Boxing</div>
+                        </div>
+                        <div class="calendar-day follicular">
+                            <div class="day-number">11</div>
+                            <div class="day-activity">Run</div>
+                        </div>
+                        <div class="calendar-day follicular">
+                            <div class="day-number">12</div>
+                            <div class="day-activity">Dance</div>
+                        </div>
+
+                        <!-- Week 3 -->
+                        <div class="calendar-day ovulation">
+                            <div class="day-number">13</div>
+                            <div class="day-activity">HIIT</div>
+                        </div>
+                        <div class="calendar-day ovulation">
+                            <div class="day-number">14</div>
+                            <div class="day-activity">💪 Peak!</div>
+                        </div>
+                        <div class="calendar-day ovulation">
+                            <div class="day-number">15</div>
+                            <div class="day-activity">Strength</div>
+                        </div>
+                        <div class="calendar-day luteal">
+                            <div class="day-number">16</div>
+                            <div class="day-activity">Pilates</div>
+                        </div>
+                        <div class="calendar-day luteal">
+                            <div class="day-number">17</div>
+                            <div class="day-activity">Moderate</div>
+                        </div>
+                        <div class="calendar-day luteal">
+                            <div class="day-number">18</div>
+                            <div class="day-activity">Yoga</div>
+                        </div>
+                        <div class="calendar-day luteal">
+                            <div class="day-number">19</div>
+                            <div class="day-activity">Walk</div>
+                        </div>
+
+                        <!-- Week 4 -->
+                        <div class="calendar-day luteal">
+                            <div class="day-number">20</div>
+                            <div class="day-activity">Stretch</div>
+                        </div>
+                        <div class="calendar-day luteal">
+                            <div class="day-number">21</div>
+                            <div class="day-activity">Rest</div>
+                        </div>
+                        <div class="calendar-day luteal">
+                            <div class="day-number">22</div>
+                            <div class="day-activity">Gentle</div>
+                        </div>
+                        <div class="calendar-day luteal">
+                            <div class="day-number">23</div>
+                            <div class="day-activity">Restore</div>
+                        </div>
+                        <div class="calendar-day luteal">
+                            <div class="day-number">24</div>
+                            <div class="day-activity">Reflect</div>
+                        </div>
+                        <div class="calendar-day luteal">
+                            <div class="day-number">25</div>
+                            <div class="day-activity">Yin Yoga</div>
+                        </div>
+                        <div class="calendar-day luteal">
+                            <div class="day-number">26</div>
+                            <div class="day-activity">Walk</div>
+                        </div>
+
+                        <!-- Week 5 -->
+                        <div class="calendar-day luteal">
+                            <div class="day-number">27</div>
+                            <div class="day-activity">Stretch</div>
+                        </div>
+                        <div class="calendar-day menstrual">
+                            <div class="day-number">28</div>
+                            <div class="day-activity">Rest</div>
+                        </div>
+                        <div class="calendar-day menstrual">
+                            <div class="day-number">29</div>
+                            <div class="day-activity">Gentle</div>
+                        </div>
+                        <div class="calendar-day menstrual">
+                            <div class="day-number">30</div>
+                            <div class="day-activity">Yoga</div>
+                        </div>
+                        <div class="calendar-day menstrual">
+                            <div class="day-number">31</div>
+                            <div class="day-activity">Recovery</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Stop Fighting Your Body. Start Working With It.</h2>
+        <p>Join thousands of women who've discovered the power of cycle-aware nutrition</p>
+        <a href="#" class="primary-btn">Start Your Free 14-Day Trial</a>
+        <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.85;">No credit card required • Cancel anytime</p>
+    </section>
+
+    <!-- Collapsed Meal Plan Reopen Button -->
+    <button id="collapsedMealPlanBtn" class="collapsed-meal-plan-btn" onclick="reopenMealPlan()">
+        🍽️ View Meal Plan
+    </button>
+
+    <script>
+        // Load configuration from config.js
+        const HF_MODEL = window.NUTRIFLOW_CONFIG?.MODEL_NAME || 'nateraw/food';
+        const HF_API_KEY = window.NUTRIFLOW_CONFIG?.HUGGINGFACE_API_KEY || 'hf_demo';
+        const API_BASE_URL = window.NUTRIFLOW_CONFIG?.API_BASE_URL || 'https://router.huggingface.co/hf-inference';
+        
+        // Log configuration on load
+        console.log('🔧 NutriFlow Configuration Loaded:');
+        console.log('  Model:', HF_MODEL);
+        console.log('  API Key:', HF_API_KEY === 'hf_demo' ? 'Demo Mode' : 'Custom Key Provided');
+        console.log('  API Base:', API_BASE_URL);
+        
+        // Meal Plan Modal
+        function openMealPlanModal() {
+            document.getElementById('mealPlanModal').style.display = 'block';
+        }
+
+        function closeMealPlanModal() {
+            document.getElementById('mealPlanModal').style.display = 'none';
+            document.getElementById('recognizedFood').style.display = 'none';
+            resetUploadArea();
+            
+            // Show collapsed button to reopen
+            const collapsedBtn = document.getElementById('collapsedMealPlanBtn');
+            if (collapsedBtn) {
+                collapsedBtn.classList.add('show');
+            }
+        }
+        
+        function reopenMealPlan() {
+            // Hide collapsed button
+            const collapsedBtn = document.getElementById('collapsedMealPlanBtn');
+            if (collapsedBtn) {
+                collapsedBtn.classList.remove('show');
+            }
+            
+            // Open modal
+            openMealPlanModal();
+        }
+
+        // Insights Modal
+        function openInsightsModal() {
+            document.getElementById('insightsModal').style.display = 'block';
+        }
+
+        function closeInsightsModal() {
+            document.getElementById('insightsModal').style.display = 'none';
+        }
+
+        // Calendar Modal
+        function openCalendarModal() {
+            document.getElementById('calendarModal').style.display = 'block';
+        }
+
+        function closeCalendarModal() {
+            document.getElementById('calendarModal').style.display = 'none';
+        }
+
+        // Food Recognition
+        let recognizedFoodItems = [];
+        let isUsingRealAI = false;
+        
+        async function recognizeFood() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) return;
+            
+            const uploadArea = document.querySelector('.photo-upload-area');
+            uploadArea.innerHTML = `
+                <div class="upload-icon">⏳</div>
+                <div class="upload-text">Analyzing your meal...</div>
+                <div class="upload-subtext">AI is recognizing the food items</div>
+            `;
+            
+            // Check if using real API key
+            if (HF_API_KEY && HF_API_KEY !== 'hf_demo' && HF_API_KEY.startsWith('hf_')) {
+                // Try real AI
+                console.log('🤖 Attempting real AI recognition with model:', HF_MODEL);
+                await tryRealAI(file);
+            } else {
+                // Use smart demo
+                console.log('🎭 Using intelligent demo mode (smart filename detection)');
+                setTimeout(() => useSmartDemo(file), 1800);
+            }
+        }
+        
+        async function tryRealAI(file) {
+            try {
+                const imageData = await file.arrayBuffer();
+                
+                console.log('📤 Sending to Hugging Face API...');
+                console.log('Model:', HF_MODEL);
+                console.log('Image size:', imageData.byteLength, 'bytes');
+                
+                const response = await fetch(
+                    `${API_BASE_URL}/models/${HF_MODEL}`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${HF_API_KEY}`,
+                            'Content-Type': 'application/octet-stream'
+                        },
+                        body: imageData
+                    }
+                );
+                
+                console.log('📡 Response status:', response.status);
+                
+                if (response.status === 503) {
+                    // Model is loading
+                    const data = await response.json();
+                    console.log('⏳ Model is loading:', data);
+                    showModelLoading(data.estimated_time || 20);
+                    // Retry after estimated time
+                    setTimeout(() => tryRealAI(file), (data.estimated_time || 20) * 1000);
+                    return;
+                }
+                
+                if (response.status === 403) {
+                    console.warn('🔒 403 Forbidden - Model may be gated or requires special access');
+                    console.log('💡 Falling back to smart demo mode');
+                    useSmartDemo(file);
+                    return;
+                }
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const results = await response.json();
+                console.log('✅ AI Results:', results);
+                
+                if (Array.isArray(results) && results.length > 0) {
+                    processAIResults(results);
+                    isUsingRealAI = true;
+                } else {
+                    console.warn('⚠️ Unexpected response format, using demo');
+                    useSmartDemo(file);
+                }
+                
+            } catch (error) {
+                console.error('❌ AI Error:', error);
+                console.log('💡 Falling back to smart demo mode');
+                useSmartDemo(file);
+            }
+        }
+        
+        function showModelLoading(estimatedTime) {
+            const uploadArea = document.querySelector('.photo-upload-area');
+            uploadArea.innerHTML = `
+                <div class="upload-icon">⏳</div>
+                <div class="upload-text">AI Model is loading...</div>
+                <div class="upload-subtext">First request takes ~${estimatedTime}s. Please wait...</div>
+            `;
+        }
+        
+        function processAIResults(results) {
+            console.log('🔍 Processing AI results...');
+            
+            // Sort by confidence and get top 3
+            const topResults = results
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 3)
+                .filter(r => r.score > 0.05);
+            
+            console.log('🎯 Top predictions:', topResults);
+            
+            recognizedFoodItems = topResults.map(result => {
+                const foodInfo = mapFoodLabel(result.label);
+                return {
+                    name: foodInfo.name,
+                    emoji: foodInfo.emoji,
+                    weight: foodInfo.weight,
+                    calories: foodInfo.calories,
+                    protein: foodInfo.protein,
+                    carbs: foodInfo.carbs,
+                    fat: foodInfo.fat,
+                    confidence: Math.round(result.score * 100)
+                };
+            });
+            
+            console.log('✅ Mapped food items:', recognizedFoodItems);
+            displayRecognizedFood(true);
+        }
+        
+        function mapFoodLabel(label) {
+            // Comprehensive food database
+            const foodDB = {
+                // Proteins
+                'chicken': { name: 'Grilled Chicken', emoji: '🍗', weight: '150g', calories: 248, protein: 47, carbs: 0, fat: 5 },
+                'grilled_chicken': { name: 'Grilled Chicken', emoji: '🍗', weight: '150g', calories: 248, protein: 47, carbs: 0, fat: 5 },
+                'fried_chicken': { name: 'Fried Chicken', emoji: '🍗', weight: '150g', calories: 320, protein: 32, carbs: 12, fat: 18 },
+                'fish': { name: 'Grilled Fish', emoji: '🐟', weight: '150g', calories: 206, protein: 43, carbs: 0, fat: 3 },
+                'salmon': { name: 'Salmon', emoji: '🐟', weight: '150g', calories: 312, protein: 39, carbs: 0, fat: 18 },
+                'steak': { name: 'Beef Steak', emoji: '🥩', weight: '150g', calories: 312, protein: 42, carbs: 0, fat: 15 },
+                'egg': { name: 'Eggs', emoji: '🥚', weight: '2 eggs', calories: 150, protein: 13, carbs: 1, fat: 10 },
+                'eggs': { name: 'Eggs', emoji: '🥚', weight: '2 eggs', calories: 150, protein: 13, carbs: 1, fat: 10 },
+                'scrambled_eggs': { name: 'Scrambled Eggs', emoji: '🥚', weight: '2 eggs', calories: 180, protein: 15, carbs: 2, fat: 12 },
+                'tofu': { name: 'Tofu', emoji: '🍢', weight: '100g', calories: 76, protein: 8, carbs: 2, fat: 5 },
+                'shrimp': { name: 'Shrimp', emoji: '🍤', weight: '100g', calories: 99, protein: 24, carbs: 0, fat: 0 },
+                
+                // Carbs
+                'rice': { name: 'White Rice', emoji: '🍚', weight: '150g', calories: 195, protein: 4, carbs: 43, fat: 0 },
+                'brown_rice': { name: 'Brown Rice', emoji: '🍚', weight: '150g', calories: 175, protein: 4, carbs: 36, fat: 2 },
+                'pasta': { name: 'Pasta', emoji: '🍝', weight: '200g', calories: 348, protein: 14, carbs: 74, fat: 2 },
+                'spaghetti': { name: 'Spaghetti', emoji: '🍝', weight: '200g', calories: 348, protein: 14, carbs: 74, fat: 2 },
+                'bread': { name: 'Bread', emoji: '🍞', weight: '2 slices', calories: 140, protein: 6, carbs: 24, fat: 2 },
+                'toast': { name: 'Toast', emoji: '🍞', weight: '2 slices', calories: 140, protein: 6, carbs: 24, fat: 2 },
+                'potato': { name: 'Potato', emoji: '🥔', weight: '150g', calories: 116, protein: 3, carbs: 27, fat: 0 },
+                'sweet_potato': { name: 'Sweet Potato', emoji: '🍠', weight: '150g', calories: 129, protein: 2, carbs: 30, fat: 0 },
+                'noodles': { name: 'Noodles', emoji: '🍜', weight: '200g', calories: 280, protein: 10, carbs: 56, fat: 2 },
+                
+                // Vegetables
+                'salad': { name: 'Mixed Salad', emoji: '🥗', weight: '200g', calories: 30, protein: 2, carbs: 6, fat: 0 },
+                'green_salad': { name: 'Green Salad', emoji: '🥗', weight: '200g', calories: 25, protein: 2, carbs: 5, fat: 0 },
+                'caesar_salad': { name: 'Caesar Salad', emoji: '🥗', weight: '250g', calories: 180, protein: 8, carbs: 12, fat: 12 },
+                'broccoli': { name: 'Broccoli', emoji: '🥦', weight: '100g', calories: 34, protein: 3, carbs: 7, fat: 0 },
+                'tomato': { name: 'Tomatoes', emoji: '🍅', weight: '100g', calories: 18, protein: 1, carbs: 4, fat: 0 },
+                'cucumber': { name: 'Cucumber', emoji: '🥒', weight: '100g', calories: 16, protein: 1, carbs: 4, fat: 0 },
+                'carrot': { name: 'Carrots', emoji: '🥕', weight: '100g', calories: 41, protein: 1, carbs: 10, fat: 0 },
+                'avocado': { name: 'Avocado', emoji: '🥑', weight: '100g', calories: 160, protein: 2, carbs: 9, fat: 15 },
+                
+                // Fruits
+                'apple': { name: 'Apple', emoji: '🍎', weight: '1 medium', calories: 95, protein: 0, carbs: 25, fat: 0 },
+                'banana': { name: 'Banana', emoji: '🍌', weight: '1 medium', calories: 105, protein: 1, carbs: 27, fat: 0 },
+                'orange': { name: 'Orange', emoji: '🍊', weight: '1 medium', calories: 62, protein: 1, carbs: 15, fat: 0 },
+                'strawberry': { name: 'Strawberries', emoji: '🍓', weight: '100g', calories: 32, protein: 1, carbs: 8, fat: 0 },
+                
+                // Meals
+                'pizza': { name: 'Pizza', emoji: '🍕', weight: '2 slices', calories: 570, protein: 24, carbs: 68, fat: 22 },
+                'burger': { name: 'Burger', emoji: '🍔', weight: '1 serving', calories: 540, protein: 25, carbs: 45, fat: 28 },
+                'hamburger': { name: 'Hamburger', emoji: '🍔', weight: '1 serving', calories: 540, protein: 25, carbs: 45, fat: 28 },
+                'sandwich': { name: 'Sandwich', emoji: '🥪', weight: '1 serving', calories: 350, protein: 15, carbs: 45, fat: 12 },
+                'burrito': { name: 'Burrito', emoji: '🌯', weight: '1 serving', calories: 450, protein: 20, carbs: 55, fat: 18 },
+                'taco': { name: 'Taco', emoji: '🌮', weight: '1 serving', calories: 220, protein: 12, carbs: 20, fat: 11 },
+                'hot_dog': { name: 'Hot Dog', emoji: '🌭', weight: '1 serving', calories: 290, protein: 11, carbs: 24, fat: 17 },
+                'sushi': { name: 'Sushi', emoji: '🍣', weight: '8 pieces', calories: 350, protein: 20, carbs: 55, fat: 6 },
+                'ramen': { name: 'Ramen', emoji: '🍜', weight: '1 bowl', calories: 380, protein: 15, carbs: 55, fat: 12 },
+                
+                // Dairy
+                'yogurt': { name: 'Greek Yogurt', emoji: '🥛', weight: '200g', calories: 130, protein: 20, carbs: 9, fat: 0 },
+                'cheese': { name: 'Cheese', emoji: '🧀', weight: '30g', calories: 120, protein: 7, carbs: 1, fat: 10 },
+                'milk': { name: 'Milk', emoji: '🥛', weight: '250ml', calories: 150, protein: 8, carbs: 12, fat: 8 },
+                
+                // Snacks
+                'french_fries': { name: 'French Fries', emoji: '🍟', weight: '100g', calories: 312, protein: 4, carbs: 41, fat: 15 },
+                'fries': { name: 'French Fries', emoji: '🍟', weight: '100g', calories: 312, protein: 4, carbs: 41, fat: 15 },
+                'chips': { name: 'Chips', emoji: '🥔', weight: '50g', calories: 265, protein: 3, carbs: 28, fat: 16 },
+                'nuts': { name: 'Mixed Nuts', emoji: '🥜', weight: '30g', calories: 180, protein: 6, carbs: 6, fat: 16 },
+                
+                // Drinks
+                'smoothie': { name: 'Fruit Smoothie', emoji: '🥤', weight: '300ml', calories: 180, protein: 3, carbs: 40, fat: 2 },
+                'coffee': { name: 'Coffee', emoji: '☕', weight: '1 cup', calories: 5, protein: 0, carbs: 1, fat: 0 },
+                'juice': { name: 'Fruit Juice', emoji: '🧃', weight: '250ml', calories: 110, protein: 1, carbs: 26, fat: 0 }
+            };
+            
+            // Normalize label
+            const normalized = label.toLowerCase().replace(/[^a-z_]/g, '_');
+            
+            // Try exact match
+            if (foodDB[normalized]) {
+                return foodDB[normalized];
+            }
+            
+            // Try partial match
+            for (const [key, value] of Object.entries(foodDB)) {
+                if (normalized.includes(key) || key.includes(normalized)) {
+                    return value;
+                }
+            }
+            
+            // Default fallback
+            return {
+                name: label.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                emoji: '🍽️',
+                weight: '100g',
+                calories: 100,
+                protein: 5,
+                carbs: 15,
+                fat: 3
+            };
+        }
+        
+        function useSmartDemo(file) {
+            const fileName = file.name.toLowerCase();
+            console.log('🎭 Smart demo analyzing filename:', fileName);
+            
+            // Detect food type from filename
+            if (fileName.includes('pizza')) {
+                recognizedFoodItems = [
+                    { name: 'Pizza', emoji: '🍕', weight: '2 slices', calories: 570, protein: 24, carbs: 68, fat: 22, confidence: 91 },
+                    { name: 'Cheese', emoji: '🧀', weight: '50g', calories: 200, protein: 12, carbs: 2, fat: 17, confidence: 78 },
+                    { name: 'Tomato Sauce', emoji: '🍅', weight: '80g', calories: 35, protein: 1, carbs: 8, fat: 0, confidence: 85 }
+                ];
+            } else if (fileName.includes('salad') || fileName.includes('chicken')) {
+                recognizedFoodItems = [
+                    { name: 'Grilled Chicken', emoji: '🍗', weight: '150g', calories: 248, protein: 47, carbs: 0, fat: 5, confidence: 94 },
+                    { name: 'Mixed Salad', emoji: '🥗', weight: '200g', calories: 30, protein: 2, carbs: 6, fat: 0, confidence: 89 },
+                    { name: 'Olive Oil', emoji: '🫒', weight: '10ml', calories: 90, protein: 0, carbs: 0, fat: 10, confidence: 72 }
+                ];
+            } else if (fileName.includes('burger')) {
+                recognizedFoodItems = [
+                    { name: 'Burger', emoji: '🍔', weight: '1 serving', calories: 540, protein: 25, carbs: 45, fat: 28, confidence: 93 },
+                    { name: 'French Fries', emoji: '🍟', weight: '100g', calories: 312, protein: 4, carbs: 41, fat: 15, confidence: 88 }
+                ];
+            } else if (fileName.includes('pasta') || fileName.includes('spaghetti')) {
+                recognizedFoodItems = [
+                    { name: 'Pasta', emoji: '🍝', weight: '200g', calories: 348, protein: 14, carbs: 74, fat: 2, confidence: 90 },
+                    { name: 'Tomato Sauce', emoji: '🍅', weight: '100g', calories: 45, protein: 2, carbs: 10, fat: 0, confidence: 82 },
+                    { name: 'Parmesan', emoji: '🧀', weight: '20g', calories: 80, protein: 7, carbs: 1, fat: 6, confidence: 76 }
+                ];
+            } else if (fileName.includes('breakfast') || fileName.includes('eggs')) {
+                recognizedFoodItems = [
+                    { name: 'Scrambled Eggs', emoji: '🥚', weight: '2 eggs', calories: 180, protein: 15, carbs: 2, fat: 12, confidence: 92 },
+                    { name: 'Whole Grain Toast', emoji: '🍞', weight: '2 slices', calories: 140, protein: 6, carbs: 24, fat: 2, confidence: 87 },
+                    { name: 'Avocado', emoji: '🥑', weight: '50g', calories: 80, protein: 1, carbs: 4, fat: 7, confidence: 81 }
+                ];
+            } else if (fileName.includes('sushi')) {
+                recognizedFoodItems = [
+                    { name: 'Sushi Roll', emoji: '🍣', weight: '8 pieces', calories: 350, protein: 20, carbs: 55, fat: 6, confidence: 88 },
+                    { name: 'Salmon', emoji: '🐟', weight: '100g', calories: 208, protein: 26, carbs: 0, fat: 12, confidence: 91 }
+                ];
+            } else {
+                recognizedFoodItems = [
+                    { name: 'Avocado', emoji: '🥑', weight: '100g', calories: 160, protein: 2, carbs: 9, fat: 15, confidence: 87 },
+                    { name: 'Whole Grain Toast', emoji: '🍞', weight: '2 slices', calories: 140, protein: 6, carbs: 24, fat: 2, confidence: 92 },
+                    { name: 'Eggs', emoji: '🥚', weight: '2 eggs', calories: 150, protein: 13, carbs: 1, fat: 10, confidence: 95 }
+                ];
+            }
+            
+            displayRecognizedFood(false);
+        }
+        
+        function displayRecognizedFood(isRealAI) {
+            const recognizedSection = document.getElementById('recognizedFood');
+            const foodItemsList = recognizedSection.querySelector('.food-items-list');
+            const uploadArea = document.querySelector('.photo-upload-area');
+            
+            const avgConfidence = Math.round(
+                recognizedFoodItems.reduce((sum, item) => sum + item.confidence, 0) / recognizedFoodItems.length
+            );
+            
+            uploadArea.innerHTML = `
+                <div class="upload-icon">✓</div>
+                <div class="upload-text" style="color: #10B981;">Food recognized successfully!</div>
+                <div class="upload-subtext">
+                    ${isRealAI ? '🤖 Real AI' : '🎭 Demo Mode'} • Confidence: ${avgConfidence}%
+                </div>
+            `;
+            
+            foodItemsList.innerHTML = recognizedFoodItems.map((item, index) => `
+                <div class="food-item-row">
+                    <div class="food-item-name">${item.emoji} ${item.name}</div>
+                    <input type="text" class="food-item-input" value="${item.weight}" 
+                           placeholder="Weight" onchange="updateFoodItem(${index}, this.value)">
+                    <div class="food-item-calories">${item.calories} cal</div>
+                    <button onclick="removeFoodItem(${index})" 
+                            style="background: #EF4444; color: white; border: none; 
+                                   padding: 0.5rem; border-radius: 8px; cursor: pointer;">✕</button>
+                </div>
+            `).join('');
+            
+            updateTotalCalories();
+            recognizedSection.style.display = 'block';
+        }
+        
+        function updateFoodItem(index, newWeight) {
+            recognizedFoodItems[index].weight = newWeight;
+            updateTotalCalories();
+        }
+        
+        function removeFoodItem(index) {
+            recognizedFoodItems.splice(index, 1);
+            if (recognizedFoodItems.length === 0) {
+                document.getElementById('recognizedFood').style.display = 'none';
+                resetUploadArea();
+            } else {
+                displayRecognizedFood(isUsingRealAI);
+            }
+        }
+        
+        function updateTotalCalories() {
+            const totalCalories = recognizedFoodItems.reduce((sum, item) => sum + item.calories, 0);
+            const totalProtein = recognizedFoodItems.reduce((sum, item) => sum + item.protein, 0);
+            const totalCarbs = recognizedFoodItems.reduce((sum, item) => sum + item.carbs, 0);
+            const totalFat = recognizedFoodItems.reduce((sum, item) => sum + item.fat, 0);
+            
+            const confirmBtn = document.querySelector('.confirm-log-btn');
+            confirmBtn.textContent = `✓ Confirm & Log (${totalCalories} cal • P: ${totalProtein}g • C: ${totalCarbs}g • F: ${totalFat}g)`;
+        }
+
+        function confirmLog() {
+            const totalCalories = recognizedFoodItems.reduce((sum, item) => sum + item.calories, 0);
+            const totalProtein = recognizedFoodItems.reduce((sum, item) => sum + item.protein, 0);
+            const totalCarbs = recognizedFoodItems.reduce((sum, item) => sum + item.carbs, 0);
+            const totalFat = recognizedFoodItems.reduce((sum, item) => sum + item.fat, 0);
+            const foodList = recognizedFoodItems.map(item => `• ${item.emoji} ${item.name} (${item.weight})`).join('\n');
+            
+            alert(`✓ Meal logged successfully!\n\n${foodList}\n\nNutrition Summary:\n• Calories: ${totalCalories}\n• Protein: ${totalProtein}g\n• Carbs: ${totalCarbs}g\n• Fat: ${totalFat}g\n\nAdded to today's nutrition tracking.`);
+            
+            document.getElementById('recognizedFood').style.display = 'none';
+            document.getElementById('fileInput').value = '';
+            recognizedFoodItems = [];
+            isUsingRealAI = false;
+            resetUploadArea();
+        }
+        
+        function resetUploadArea() {
+            const uploadArea = document.querySelector('.photo-upload-area');
+            uploadArea.innerHTML = `
+                <div class="upload-icon">📷</div>
+                <div class="upload-text">Take a photo of your meal</div>
+                <div class="upload-subtext">AI will recognize the food and calculate nutrition</div>
+            `;
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const mealModal = document.getElementById('mealPlanModal');
+            const insightsModal = document.getElementById('insightsModal');
+            const calendarModal = document.getElementById('calendarModal');
+            
+            if (event.target == mealModal) {
+                closeMealPlanModal();
+            }
+            if (event.target == insightsModal) {
+                closeInsightsModal();
+            }
+            if (event.target == calendarModal) {
+                closeCalendarModal();
+            }
+        }
+    </script>
+</body>
+</html>
