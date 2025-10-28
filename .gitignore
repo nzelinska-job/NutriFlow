@@ -49,7 +49,6 @@ venv/
 env/
 
 # Large media files (use Git LFS or external hosting)
-*.mp4
 *.mov
 *.avi
 presentation/video-demo.mp4
